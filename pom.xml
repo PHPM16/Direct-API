@@ -34,7 +34,7 @@
         <dependency>
             <groupId>com.h2database</groupId>
             <artifactId>h2</artifactId>
-            <version>2.2.224</version> <!-- Especificar a versão correta -->
+            <version>2.2.224</version>
             <scope>test</scope>
         </dependency>
 
@@ -48,7 +48,7 @@
         <dependency>
             <groupId>org.xerial</groupId>
             <artifactId>sqlite-jdbc</artifactId>
-            <version>3.42.0.0</version> <!-- Use a versão mais recente disponível -->
+            <version>3.42.0.0</version>
         </dependency>
         <!-- Spring Boot Starter Web -->
         <dependency>

@@ -8,10 +8,10 @@ public class Imovel {
     private String dataRegistro;
     private String ultimoContato;
     private String corretor;
-    private String status; // Novo atributo
+    private String status;
+    private int id;
 
-    // Construtor
-    public Imovel(String nomeImovel, String proprietario, String contato, double valor, String dataRegistro, String ultimoContato, String corretor) {
+    public Imovel(String nomeImovel, String proprietario, String contato, double valor, String dataRegistro, String ultimoContato, String corretor, String status, int id) {
         this.nomeImovel = nomeImovel;
         this.proprietario = proprietario;
         this.contato = contato;
@@ -19,7 +19,8 @@ public class Imovel {
         this.dataRegistro = dataRegistro;
         this.ultimoContato = ultimoContato;
         this.corretor = corretor;
-        this.status = status; // Adicionando status
+        this.status = status;
+        this.id = id;
     }
 
     public Imovel() {
@@ -92,11 +93,17 @@ public class Imovel {
         this.status = status;
     }
 
+    public int getId() { return id;
+    }
+
+    public void setId(int id) { this.id = id;
+    }
+
     @Override
     public String toString() {
         return "Imovel [nomeImovel=" + nomeImovel + ", proprietario=" + proprietario + ", contato=" + contato +
                 ", valor=" + valor + ", dataRegistro=" + dataRegistro + ", ultimoContato=" + ultimoContato +
-                ", corretor=" + corretor + ", status=" + status + "]";
+                ", corretor=" + corretor + ", status=" + status + ", id=" + id + "]";
     }
 }
 

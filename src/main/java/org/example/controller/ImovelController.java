@@ -3,10 +3,8 @@ package org.example.controller;
 import org.example.model.Imovel;
 import org.example.service.ImovelService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
-import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -16,11 +14,31 @@ public class ImovelController {
 
     @Autowired
     private ImovelService imovelService;
-    @CrossOrigin(origins = "*")  // Permite requisições de qualquer origem
-    // Endpoint para retornar a lista de imóveis ordenada pela data mais antiga (ultimoContato)
+
+    // Permite requisições de qualquer origem para o endpoint de listagem
+    @CrossOrigin(origins = "*")
     @GetMapping("/ordenados")
     public List<Imovel> getImoveisOrdenados() {
         return imovelService.getImoveisOrdenadosPorUltimoContato();
     }
-}
 
+    // Permite requisições de qualquer origem para o endpoint de cadastro
+    @CrossOrigin(origins = "*")
+    @PostMapping
+    public ResponseEntity<String> cadastrarImovel(@RequestBody Imovel imovel) {
+        imovelService.salvarImovel(imovel);  // Método para salvar o imóvel no banco
+        return ResponseEntity.ok("Imóvel cadastrado com sucesso!");
+    }
+
+    // Endpoint para atualizar um imóvel existente com base no ID
+    @CrossOrigin(origins = "*")
+    @PatchMapping("/{id}")
+    public ResponseEntity<String> atualizarImovel(@PathVariable int id, @RequestBody Imovel imovel) {
+        try {
+            imovelService.atualizarImovel(id, imovel);
+            return ResponseEntity.ok("Imóvel atualizado com sucesso!");
+        } catch (Exception e) {
+            return ResponseEntity.status(500).body("Erro ao atualizar o imóvel: " + e.getMessage());
+        }
+    }
+}
